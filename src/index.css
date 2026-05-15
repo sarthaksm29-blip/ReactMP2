@@ -1,0 +1,385 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════
+   NATURE DESIGN SYSTEM — Glass + Earth Tones
+   ═══════════════════════════════════════════════════ */
+
+:root {
+  /* Glass surfaces */
+  --glass-bg: rgba(15, 25, 10, 0.55);
+  --glass-bg-light: rgba(25, 40, 18, 0.45);
+  --glass-bg-card: rgba(18, 30, 12, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(255, 255, 255, 0.15);
+  --glass-blur: 16px;
+  --glass-blur-heavy: 24px;
+
+  /* Accent colors */
+  --accent-gold: #D4A853;
+  --accent-gold-light: #E7C97A;
+  --accent-sage: #8BA888;
+  --accent-forest: #3B6D11;
+  --accent-forest-light: #5A9A2F;
+  --accent-amber: #D4883A;
+
+  /* Text */
+  --text-primary: #F5EDE0;
+  --text-secondary: rgba(245, 237, 224, 0.7);
+  --text-muted: rgba(245, 237, 224, 0.45);
+  --text-heading: #FDF9ED;
+
+  /* Glows */
+  --glow-gold: rgba(212, 168, 83, 0.15);
+  --glow-green: rgba(59, 109, 17, 0.2);
+  --glow-amber: rgba(212, 136, 58, 0.15);
+
+  /* Semantic */
+  --danger: #E24B4A;
+  --danger-bg: rgba(226, 75, 74, 0.15);
+  --warning: #D4883A;
+  --warning-bg: rgba(212, 136, 58, 0.15);
+  --success: #5A9A2F;
+  --success-bg: rgba(90, 154, 47, 0.15);
+  --info: #5B9BD5;
+  --info-bg: rgba(91, 155, 213, 0.15);
+}
+
+@layer base {
+  body {
+    @apply antialiased;
+    background: #0a1208;
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    overflow: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-heading);
+  }
+
+  h2, h3, .card-heading {
+    @apply text-[15px] font-medium;
+    color: var(--text-heading);
+  }
+  
+  .muted-label {
+    @apply text-[12px];
+    color: var(--text-muted);
+  }
+  
+  hr, .divider {
+    border-color: var(--glass-border);
+    @apply border-t-[0.5px] border-solid border-x-0 border-b-0;
+  }
+
+  /* Global Button States */
+  button, a.btn-link {
+    @apply transition-all duration-150;
+  }
+  button:active:not(:disabled), a.btn-link:active {
+    transform: scale(0.97);
+  }
+  button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  /* Global Input States */
+  input:not([type="checkbox"]):not([type="radio"]), select, textarea {
+    @apply transition-all duration-150;
+  }
+  input:not([type="checkbox"]):not([type="radio"]):focus, select:focus, textarea:focus {
+    border-color: var(--accent-gold) !important;
+    background: rgba(212, 168, 83, 0.08) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(212, 168, 83, 0.12) !important;
+  }
+  input.input-error, select.input-error, textarea.input-error {
+    border-color: var(--danger) !important;
+    background: var(--danger-bg) !important;
+  }
+
+  /* Scrollbar styling for glass surfaces */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+@layer components {
+  /* ── Glass Cards ── */
+  .glass-card {
+    background: var(--glass-bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 0.5px solid var(--glass-border);
+    border-radius: 14px;
+    transition: all 0.2s ease;
+  }
+  .glass-card:hover {
+    border-color: var(--glass-border-hover);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .glass-card-interactive {
+    background: var(--glass-bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 0.5px solid var(--glass-border);
+    border-radius: 14px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  .glass-card-interactive:hover {
+    border-color: rgba(212, 168, 83, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), 0 0 20px var(--glow-gold);
+  }
+
+  /* ── Glass Sidebar ── */
+  .glass-sidebar {
+    background: rgba(10, 18, 8, 0.75);
+    backdrop-filter: blur(var(--glass-blur-heavy));
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy));
+    border-right: 0.5px solid var(--glass-border);
+  }
+
+  /* ── Glass Navbar ── */
+  .glass-navbar {
+    background: rgba(10, 18, 8, 0.6);
+    backdrop-filter: blur(var(--glass-blur-heavy));
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy));
+    border-bottom: 0.5px solid var(--glass-border);
+  }
+
+  /* ── Nature Buttons ── */
+  .btn-nature-primary {
+    @apply px-5 py-2 rounded-full text-sm font-medium;
+    background: linear-gradient(135deg, var(--accent-forest), var(--accent-forest-light));
+    color: white;
+    box-shadow: 0 4px 15px rgba(59, 109, 17, 0.3);
+    transition: all 0.2s ease;
+  }
+  .btn-nature-primary:hover {
+    box-shadow: 0 6px 20px rgba(59, 109, 17, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .btn-nature-gold {
+    @apply px-5 py-2 rounded-full text-sm font-medium;
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-amber));
+    color: #1a1a0f;
+    box-shadow: 0 4px 15px rgba(212, 168, 83, 0.3);
+    transition: all 0.2s ease;
+  }
+  .btn-nature-gold:hover {
+    box-shadow: 0 6px 20px rgba(212, 168, 83, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .btn-glass {
+    @apply px-4 py-2 rounded-full text-sm font-medium;
+    background: rgba(255, 255, 255, 0.06);
+    border: 0.5px solid var(--glass-border);
+    color: var(--text-primary);
+    backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+  }
+  .btn-glass:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--glass-border-hover);
+  }
+
+  /* ── Hero Section ── */
+  .nature-hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    min-height: 200px;
+  }
+  .nature-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10, 18, 8, 0.7) 0%, rgba(42, 28, 16, 0.5) 100%);
+    z-index: 1;
+  }
+  .nature-hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Stat Card Accent Bars ── */
+  .stat-accent-green { background: linear-gradient(90deg, var(--accent-forest), var(--accent-sage)); }
+  .stat-accent-blue { background: linear-gradient(90deg, #3B82F6, #5B9BD5); }
+  .stat-accent-red { background: linear-gradient(90deg, #E24B4A, #F87171); }
+  .stat-accent-amber { background: linear-gradient(90deg, var(--accent-amber), var(--accent-gold)); }
+
+  /* ── Badge Styles ── */
+  .badge-danger {
+    @apply text-[11px] font-bold px-2 py-0.5 rounded-[4px];
+    background: var(--danger-bg);
+    color: #F87171;
+  }
+  .badge-warning {
+    @apply text-[11px] font-bold px-2 py-0.5 rounded-[4px];
+    background: var(--warning-bg);
+    color: var(--accent-gold-light);
+  }
+  .badge-success {
+    @apply text-[11px] font-bold px-2 py-0.5 rounded-[4px];
+    background: var(--success-bg);
+    color: #86EFAC;
+  }
+}
+
+@layer utilities {
+  /* ── Floating Leaf Particles ── */
+  @keyframes leafFloat1 {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translate(200px, 100vh) rotate(720deg); opacity: 0; }
+  }
+  @keyframes leafFloat2 {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.4; }
+    90% { opacity: 0.4; }
+    100% { transform: translate(-150px, 100vh) rotate(-540deg); opacity: 0; }
+  }
+  @keyframes leafFloat3 {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.5; }
+    90% { opacity: 0.5; }
+    100% { transform: translate(100px, 100vh) rotate(360deg); opacity: 0; }
+  }
+
+  .leaf-particle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    font-size: 16px;
+  }
+  .leaf-particle-1 { animation: leafFloat1 25s linear infinite; }
+  .leaf-particle-2 { animation: leafFloat2 30s linear infinite; }
+  .leaf-particle-3 { animation: leafFloat3 20s linear infinite; }
+
+  /* ── Ambient Firefly Glow ── */
+  @keyframes fireflyGlow {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 0.7; transform: scale(1); }
+  }
+  .firefly {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent-gold-light);
+    box-shadow: 0 0 8px 2px var(--accent-gold-light);
+    pointer-events: none;
+    z-index: 1;
+    animation: fireflyGlow 4s ease-in-out infinite;
+  }
+
+  /* Skeleton Loading Animation */
+  @keyframes pulse-skeleton {
+    0% { opacity: 0.4; }
+    50% { opacity: 0.9; }
+    100% { opacity: 0.4; }
+  }
+  .skeleton {
+    animation: pulse-skeleton 1.2s infinite ease-in-out;
+    @apply rounded;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  /* Toast Progress Animation */
+  @keyframes shrinkWidth {
+    from { width: 100%; }
+    to { width: 0%; }
+  }
+  .toast-progress {
+    animation: shrinkWidth 3.5s linear forwards;
+  }
+
+  /* Critical Badge Pulse */
+  @keyframes pulse-red {
+    0% { box-shadow: 0 0 0 0 rgba(226, 75, 74, 0.4); }
+    70% { box-shadow: 0 0 0 6px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+  .pulse-critical {
+    animation: pulse-red 1.5s infinite;
+  }
+
+  /* Spinner for loading buttons */
+  @keyframes spin-border {
+    to { transform: rotate(360deg); }
+  }
+  .spinner {
+    @apply w-4 h-4 rounded-full;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    animation: spin-border 0.8s linear infinite;
+  }
+
+  /* Subtle text shadow for readability on glass */
+  .text-glow {
+    text-shadow: 0 0 20px rgba(212, 168, 83, 0.3);
+  }
+  .text-shadow-sm {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Forest background image container */
+  @keyframes forestZoom {
+    0% { transform: scale(1) translate(0, 0); }
+    25% { transform: scale(1.08) translate(-1%, -0.5%); }
+    50% { transform: scale(1.12) translate(-2%, 0.5%); }
+    75% { transform: scale(1.06) translate(0.5%, -1%); }
+    100% { transform: scale(1) translate(0, 0); }
+  }
+  .nature-bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .nature-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: forestZoom 60s ease-in-out infinite;
+    will-change: transform;
+  }
+  .nature-video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      160deg,
+      rgba(8, 15, 6, 0.82) 0%,
+      rgba(12, 22, 8, 0.75) 40%,
+      rgba(20, 15, 8, 0.70) 100%
+    );
+  }
+}
